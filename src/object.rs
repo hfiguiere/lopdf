@@ -603,7 +603,7 @@ impl Stream {
         output.ok_or(Error::Type)
     }
 
-    fn decompress_lzw(input: &[u8], params: Option<&Dictionary>) -> Result<Vec<u8>> {
+    pub fn decompress_lzw(input: &[u8], params: Option<&Dictionary>) -> Result<Vec<u8>> {
         use lzw::{Decoder, DecoderEarlyChange, MsbReader};
         const MIN_BITS: u8 = 9;
 
@@ -655,7 +655,7 @@ impl Stream {
         output
     }
 
-    fn decompress_zlib(input: &[u8], params: Option<&Dictionary>) -> Result<Vec<u8>> {
+    pub fn decompress_zlib(input: &[u8], params: Option<&Dictionary>) -> Result<Vec<u8>> {
         use flate2::read::ZlibDecoder;
         use std::io::prelude::*;
 
